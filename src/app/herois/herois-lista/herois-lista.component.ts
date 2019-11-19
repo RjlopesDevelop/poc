@@ -1,31 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroisService } from '../herois.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, empty } from 'rxjs';
 import { IHero } from '../hero.interface';
-import { take } from 'rxjs/operators';
+import { take, catchError } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-herois-lista',
   templateUrl: './herois-lista.component.html',
-  styleUrls: ['./herois-lista.component.css']
+  styleUrls: ['./herois-lista.component.css'],
+  preserveWhitespaces: true
 })
 export class HeroisListaComponent implements OnInit {
 
   heros$: Observable<IHero[]>;
-  constructor(private service: HeroisService) { }
+  error$ = new Subject<boolean>();
+  bsModalRef: BsModalRef;
+  constructor(
+    private service: HeroisService,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.list();
   }
   private list(): void {
-    try {
-      // this.http.get(`http://localhost:5000/api/values`).subscribe((response: IHero) => this.avengers = response);
-      this.heros$ = this.service.getAvengers().pipe(take(1));
-      // .subscribe(
-      //   (response: IHero) => this.avengers = response,
-      //   error => console.error(error));
-    } catch (error) {
-      console.error(error);
-    }
+    this.heros$ = this.service.getAvengers().pipe(
+     // take(1),
+      catchError(error => {
+        console.error(error);
+        // this.error$.next(true);
+        this.handleError();
+        return empty();
+      })
+    );
+  }
+  onRefresh(): void {
+    this.list();
+  }
+  handleError() {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = 'Erro ao carregar cursos. Tente novamente mais tarde.';
   }
 }

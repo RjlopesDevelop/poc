@@ -23,8 +23,8 @@ export class HeroisService {
   public getAvengers(): Observable<IHero[]> {
     return this.http.get<IHero[]>(this.API).pipe(
       tap(console.log),
-      delay(2000),
-      catchError((err: HttpErrorResponse) => throwError(console.error()))
+      delay(1000),
+      // catchError((err: HttpErrorResponse) => throwError(console.error()))
     );
   }
   /**
