@@ -4,7 +4,7 @@ import { Observable, Subject, empty } from 'rxjs';
 import { IHero } from '../hero.interface';
 import { take, catchError } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+import { AlertModalService } from 'src/app/shared/alert-modal.service';
 
 @Component({
   selector: 'app-herois-lista',
@@ -19,7 +19,8 @@ export class HeroisListaComponent implements OnInit {
   bsModalRef: BsModalRef;
   constructor(
     private service: HeroisService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private alertService: AlertModalService) { }
 
   ngOnInit() {
     this.list();
@@ -39,8 +40,10 @@ export class HeroisListaComponent implements OnInit {
     this.list();
   }
   handleError() {
-    this.bsModalRef = this.modalService.show(AlertModalComponent);
-    this.bsModalRef.content.type = 'danger';
-    this.bsModalRef.content.message = 'Erro ao carregar cursos. Tente novamente mais tarde.';
+    this.alertService.showAlertDanger('Erro ao carregar cursos. Tente novamente mais tarde.');
+    this.error$.next(true);
+    // this.bsModalRef = this.modalService.show(AlertModalComponent);
+    // this.bsModalRef.content.type = 'danger';
+    // this.bsModalRef.content.message = 'Erro ao carregar cursos. Tente novamente mais tarde.';
   }
 }
