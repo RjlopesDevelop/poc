@@ -11,7 +11,7 @@ import {tap, catchError, delay} from 'rxjs/operators';
 })
 export class HeroisService {
 
-  private readonly API = `${environment.API}api/values`;
+  private readonly API = `${environment.API}heros`;
 
   private  readonly httpOptions = {
     headers: new HttpHeaders({
