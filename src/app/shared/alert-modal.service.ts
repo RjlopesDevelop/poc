@@ -20,9 +20,9 @@ export class AlertModalService {
     bsModalRef.content.type = type;
     bsModalRef.content.message = message;
 
-    // if (dismissTimeout) {
-    //   setTimeout(() => bsModalRef.hide(), dismissTimeout);
-    // }
+    if (dismissTimeout) {
+      setTimeout(() => bsModalRef.hide(), dismissTimeout);
+    }
   }
 
   showAlertDanger(message: string) {

@@ -1,24 +1,39 @@
 {
-    "heros": [
-        {
-            "id": 1,
-            "nome": "Homem de Ferro",
-            "grupo": "Vingadores"
-        },
-        {
-            "id": 2,
-            "nome": "Hulk",
-            "grupo": "Vingadores"
-        },
-        {
-            "id": 3,
-            "nome": "Capitão America",
-            "grupo": "Vingadores"
-        },
-        {
-            "id": 4,
-            "nome": "Homem Aranha",
-            "grupo": "Vingadores"
-        }
-    ]
+  "heros": [
+    {
+      "id": 1,
+      "nome": "Homem de Ferro",
+      "grupo": "Vingadores"
+    },
+    {
+      "id": 2,
+      "nome": "Hulk",
+      "grupo": "Vingadores"
+    },
+    {
+      "id": 3,
+      "nome": "Capitão America",
+      "grupo": "Vingadores"
+    },
+    {
+      "id": 4,
+      "nome": "Homem Aranha",
+      "grupo": "Vingadores"
+    },
+    {
+      "nome": "Viúva Negra",
+      "grupo": "Vingador",
+      "id": 5
+    },
+    {
+      "nome": "Dr Estranho",
+      "grupo": "Vingador",
+      "id": 6
+    },
+    {
+      "nome": "Arqueiro",
+      "grupo": "Vingadores",
+      "id": 7
+    }
+  ]
 }

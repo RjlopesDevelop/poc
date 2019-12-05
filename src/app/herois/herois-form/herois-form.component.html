@@ -5,7 +5,7 @@
   style="padding-top: 10px;"
 >
   <div class="form-row">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
       <label for="validationCustom01">nome do herói</label>
       <input
         type="text"
@@ -34,6 +34,37 @@
       >
         Nome precisa ter no máximo
         {{ hasError("nome")["maxlength"].requiredLength }} caracteres.
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="validationCustom01">nome do grupo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom01"
+        placeholder="Nome do grupo"
+        formControlName="grupo"
+        [ngClass]="{ 'is-invalid': submitted && hasError('grupo') }"
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="hasError('grupo') && hasError('grupo')['required']"
+      >
+        Por favor informe um grupo para herói.
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="hasError('grupo') && hasError('grupo')['minlength']"
+      >
+        Nome precisa ter no mínimo
+        {{ hasError("grupo")["minlength"].requiredLength }} caracteres.
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="hasError('grupo') && hasError('grupo')['maxlength']"
+      >
+        Nome precisa ter no máximo
+        {{ hasError("grupo")["maxlength"].requiredLength }} caracteres.
       </div>
     </div>
     <div style="margin-top: 10px;">

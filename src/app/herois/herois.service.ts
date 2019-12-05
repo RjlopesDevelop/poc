@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { IHero } from './hero.interface';
-import {tap, catchError, delay} from 'rxjs/operators';
+import {tap, catchError, delay, take} from 'rxjs/operators';
 
 
 @Injectable({
@@ -30,9 +30,10 @@ export class HeroisService {
   /**
    * post
    */
-  public postHero(model: IHero): Observable<string> {
+  public postHero(model: IHero) {
     return this.http.post<IHero>(this.API, model, this.httpOptions).pipe(
-      tap((response: any) => response)
+      take(1)
+      // tap((response: any) => response)
     );
   }
 }
