@@ -5,6 +5,7 @@ import { IHero } from '../hero.interface';
 import { take, catchError } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-herois-lista',
@@ -20,7 +21,9 @@ export class HeroisListaComponent implements OnInit {
   constructor(
     private service: HeroisService,
     private modalService: BsModalService,
-    private alertService: AlertModalService) { }
+    private alertService: AlertModalService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.list();
@@ -45,5 +48,9 @@ export class HeroisListaComponent implements OnInit {
     // this.bsModalRef = this.modalService.show(AlertModalComponent);
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar cursos. Tente novamente mais tarde.';
+  }
+  onEdit(id) {
+    this.router.navigate(['editar', id], {relativeTo: this.route});
+
   }
 }

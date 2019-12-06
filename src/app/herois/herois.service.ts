@@ -27,6 +27,9 @@ export class HeroisService {
       // catchError((err: HttpErrorResponse) => throwError(console.error()))
     );
   }
+  loadById(id: any) {
+    return this.http.get<IHero>(`${this.API}/${id}`).pipe(take(1));
+  }
   /**
    * post
    */

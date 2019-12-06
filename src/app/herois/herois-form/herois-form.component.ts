@@ -4,6 +4,8 @@ import { HeroisService } from '../herois.service';
 import { IHero } from '../hero.interface';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -19,9 +21,34 @@ export class HeroisFormComponent implements OnInit {
     private fb: FormBuilder,
     private heroService: HeroisService,
     private alertService: AlertModalService,
-    private location: Location) { }
+    private location: Location,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+
+    // const heros = this.route.snapshot.data.IHero;
+    // console.log('retorno: ', heros);
+
+    // this.route.params
+    // .pipe(
+    //   map((params: any) => params['id']),
+    //   switchMap(id => this.service.loadByID(id)),
+    //   // switchMap(cursos => obterAulas)
+    // )
+    // .subscribe(curso => this.updateForm(curso));
+
+    // concatMap -> ordem da requisiçao importa
+    // mergeMap -> ordem nao importa
+    // exhaustMap -> casos de login
+
+    this.route.params
+    .pipe(
+      map((params: any) => params.id),
+      switchMap(id => this.heroService.loadById(id)),
+    )
+    .subscribe( hero => this.updateForm(hero));
+
     this.form = this.fb.group({
       nome: [
         null,
@@ -31,6 +58,14 @@ export class HeroisFormComponent implements OnInit {
         null,
         [Validators.required, Validators.minLength(3), Validators.maxLength(13)]
       ]
+    });
+  }
+
+  updateForm(hero: IHero) {
+    this.form.patchValue({
+      id: hero.id,
+      nome: hero.nome,
+      grupo: hero.grupo
     });
   }
   hasError(field: string) {
