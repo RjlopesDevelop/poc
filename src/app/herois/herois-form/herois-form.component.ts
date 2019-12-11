@@ -42,49 +42,77 @@ export class HeroisFormComponent implements OnInit {
     // mergeMap -> ordem nao importa
     // exhaustMap -> casos de login
 
-    this.route.params
-    .pipe(
-      map((params: any) => params.id),
-      switchMap(id => this.heroService.loadById(id)),
-    )
-    .subscribe( hero => this.updateForm(hero));
+    const hero: IHero = this.route.snapshot.data.hero;
+
+    // this.route.params
+    //   .pipe(
+    //     map((params: any) => params.id),
+    //     switchMap(id => this.heroService.loadById(id)),
+    //   )
+    //   .subscribe(hero => this.updateForm(hero));
 
     this.form = this.fb.group({
+      id: [hero.id],
       nome: [
-        null,
+        hero.nome,
         [Validators.required, Validators.minLength(3), Validators.maxLength(13)]
       ],
       grupo: [
-        null,
+        hero.grupo,
         [Validators.required, Validators.minLength(3), Validators.maxLength(13)]
       ]
     });
   }
 
-  updateForm(hero: IHero) {
-    this.form.patchValue({
-      id: hero.id,
-      nome: hero.nome,
-      grupo: hero.grupo
-    });
-  }
+  // updateForm(hero: IHero) {
+  //   this.form.patchValue({
+  //     id: hero.id,
+  //     nome: hero.nome,
+  //     grupo: hero.grupo
+  //   });
+  // }
   hasError(field: string) {
     return this.form.get(field).errors;
   }
   onSubmit() {
     this.submitted = true;
+
     if (this.form.valid) {
-      console.log(this.form.value);
 
-      this.heroService.postHero(this.form.value).subscribe(
+      let msgSuccess = 'Curso criado com sucesso!';
+      let msgError = 'Erro ao criar curso, tente novamente!';
+      if (this.form.value.id) {
+        msgSuccess = 'Curso atualizado com sucesso!';
+        msgError = 'Erro ao atualizar curso, tente novamente!';
+      }
+
+      this.heroService.save(this.form.value).subscribe(
         success => {
-          this.alertService.showAlertSuccess('Herói criado com sucesso!');
+          this.alertService.showAlertSuccess(msgSuccess);
           this.location.back();
-
         },
-        error => this.alertService.showAlertDanger('Error ao adicionar novo herói. Tente novamente.'),
-        () => console.log('processo completo')
+        error => this.alertService.showAlertDanger(msgError)
       );
+
+      // if (this.form.value.id) {
+      //   this.heroService.putHero(this.form.value).subscribe(
+      //     success => {
+
+      //     },
+      //     error => this.alertService.showAlertDanger('Error ao atualizar herói. Tente novamente.'),
+      //     () => console.log('processo completo')
+      //   );
+      // } else {
+      //   this.heroService.postHero(this.form.value).subscribe(
+      //     success => {
+      //       this.alertService.showAlertSuccess('Herói criado com sucesso!');
+      //       this.location.back();
+
+      //     },
+      //     error => this.alertService.showAlertDanger('Error ao adicionar novo herói. Tente novamente.'),
+      //     () => console.log('processo completo')
+      //   );
+      // }
     }
   }
   onCancel() {

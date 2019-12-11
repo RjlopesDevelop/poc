@@ -49,8 +49,7 @@ export class HeroisListaComponent implements OnInit {
     // this.bsModalRef.content.type = 'danger';
     // this.bsModalRef.content.message = 'Erro ao carregar cursos. Tente novamente mais tarde.';
   }
-  onEdit(id) {
+  onEdit(id: any) {
     this.router.navigate(['editar', id], {relativeTo: this.route});
-
   }
 }

@@ -22,7 +22,7 @@ export class HeroisService {
   constructor(private http: HttpClient) { }
   public getAvengers(): Observable<IHero[]> {
     return this.http.get<IHero[]>(this.API).pipe(
-      tap(console.log),
+     // tap(console.log),
       delay(1000),
       // catchError((err: HttpErrorResponse) => throwError(console.error()))
     );
@@ -33,10 +33,21 @@ export class HeroisService {
   /**
    * post
    */
-  public postHero(model: IHero) {
-    return this.http.post<IHero>(this.API, model, this.httpOptions).pipe(
+  private postHero(hero: IHero) {
+    return this.http.post<IHero>(this.API, hero, this.httpOptions).pipe(
       take(1)
       // tap((response: any) => response)
     );
   }
+  private putHero(hero: IHero) {
+    return this.http.put(`${this.API}/${hero.id}`, hero).pipe(take(1));
+  }
+
+  save(hero: IHero) {
+    if (hero.id) {
+      return this.putHero(hero);
+    }
+    return this.postHero(hero);
+  }
+
 }

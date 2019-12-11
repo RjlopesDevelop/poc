@@ -21,14 +21,14 @@
       "grupo": "Vingadores"
     },
     {
+      "id": 5,
       "nome": "Viúva Negra",
-      "grupo": "Vingador",
-      "id": 5
+      "grupo": "Vingadores"
     },
     {
+      "id": 6,
       "nome": "Dr Estranho",
-      "grupo": "Vingador",
-      "id": 6
+      "grupo": "Vingadores"
     },
     {
       "nome": "Arqueiro",
@@ -39,6 +39,16 @@
       "nome": "Arrow",
       "grupo": "Vingadores",
       "id": 8
+    },
+    {
+      "id": 9,
+      "nome": "Super gemeos",
+      "grupo": "Ativar"
+    },
+    {
+      "id": 10,
+      "nome": "teste parada",
+      "grupo": "save"
     }
   ]
 }
