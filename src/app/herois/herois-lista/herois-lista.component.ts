@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeroisService } from '../herois.service';
-import { Observable, Subject, empty } from 'rxjs';
+import { Observable, Subject, empty, EMPTY } from 'rxjs';
 import { IHero } from '../hero.interface';
-import { take, catchError } from 'rxjs/operators';
+import { take, catchError, switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,6 +18,10 @@ export class HeroisListaComponent implements OnInit {
   heros$: Observable<IHero[]>;
   error$ = new Subject<boolean>();
   bsModalRef: BsModalRef;
+  deleteModalRef: BsModalRef;
+  heroSelected: IHero;
+  @ViewChild('deleteModal', {static: true}) deleteModal: any;
+
   constructor(
     private service: HeroisService,
     private modalService: BsModalService,
@@ -52,4 +56,41 @@ export class HeroisListaComponent implements OnInit {
   onEdit(id: any) {
     this.router.navigate(['editar', id], {relativeTo: this.route});
   }
+
+  onDelete(hero: IHero) {
+    this.heroSelected = hero;
+    // this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+    const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja remover esse curso?');
+    result$.asObservable()
+    .pipe(
+      take(1),
+      switchMap(result => result ? this.service.remove(hero.id) : EMPTY)
+    ).subscribe(
+      success => {
+        this.onRefresh();
+       // this.deleteModalRef.hide();
+      },
+      error => {
+        this.alertService.showAlertDanger('Erro ao remover hero. Tente novamente mais tarde.');
+       // this.deleteModalRef.hide();
+      }
+    );
+  }
+  // onConfirmDelete() {
+  //   this.service.remove(this.heroSelected.id)
+  //   .subscribe(
+  //     success => {
+  //       this.onRefresh();
+  //       this.deleteModalRef.hide();
+  //     },
+  //     error => {
+  //       this.alertService.showAlertDanger('Erro ao remover hero. Tente novamente mais tarde.');
+  //      // this.deleteModalRef.hide();
+  //     },
+  //   );
+  // }
+
+  // onDeclineDelete() {
+  //   this.deleteModalRef.hide();
+  // }
 }

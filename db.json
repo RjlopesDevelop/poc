@@ -26,29 +26,9 @@
       "grupo": "Vingadores"
     },
     {
-      "id": 6,
-      "nome": "Dr Estranho",
-      "grupo": "Vingadores"
-    },
-    {
       "nome": "Arqueiro",
       "grupo": "Vingadores",
       "id": 7
-    },
-    {
-      "nome": "Arrow",
-      "grupo": "Vingadores",
-      "id": 8
-    },
-    {
-      "id": 9,
-      "nome": "Super gemeos",
-      "grupo": "Ativar"
-    },
-    {
-      "id": 10,
-      "nome": "teste parada",
-      "grupo": "save"
     }
   ]
 }

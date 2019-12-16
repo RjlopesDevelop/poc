@@ -3,8 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { IHero } from './hero.interface';
-import {tap, catchError, delay, take} from 'rxjs/operators';
-
+import { tap, catchError, delay, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +12,22 @@ export class HeroisService {
 
   private readonly API = `${environment.API}heros`;
 
-  private  readonly httpOptions = {
+  private readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'my-auth-token'
     })
   };
   constructor(private http: HttpClient) { }
-  public getAvengers(): Observable<IHero[]> {
+
+  getAvengers(): Observable<IHero[]> {
     return this.http.get<IHero[]>(this.API).pipe(
-     // tap(console.log),
+      // tap(console.log),
       delay(1000),
       // catchError((err: HttpErrorResponse) => throwError(console.error()))
     );
   }
+
   loadById(id: any) {
     return this.http.get<IHero>(`${this.API}/${id}`).pipe(take(1));
   }
@@ -48,6 +49,10 @@ export class HeroisService {
       return this.putHero(hero);
     }
     return this.postHero(hero);
+  }
+  remove(id: any) {
+    return this.http.delete(`${this.API}/${id}`).pipe(take(1));
+
   }
 
 }

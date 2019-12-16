@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from './shared/shared.module';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    SharedModule
+    SharedModule,
+   // CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
