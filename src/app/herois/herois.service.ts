@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { IHero } from './hero.interface';
+import { IHero } from '../shared/interface/hero.interface';
 import { tap, catchError, delay, take } from 'rxjs/operators';
 
 @Injectable({

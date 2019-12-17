@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { IHero } from '../hero.interface';
+import { IHero } from '../../shared/interface/hero.interface';
 import { HeroisService } from '../herois.service';
 
 @Injectable({

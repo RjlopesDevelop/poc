@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HeroisService } from '../herois.service';
-import { IHero } from '../hero.interface';
+import { IHero } from '../../shared/interface/hero.interface';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -55,11 +55,11 @@ export class HeroisFormComponent implements OnInit {
       id: [hero.id],
       nome: [
         hero.nome,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(13)]
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
       ],
       grupo: [
         hero.grupo,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(13)]
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
       ]
     });
   }

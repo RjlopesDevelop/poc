@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HeroisService } from '../herois.service';
+import { HeroService } from '../hero.service';
 import { Observable, Subject, empty, EMPTY } from 'rxjs';
-import { IHero } from '../hero.interface';
+import { IHero } from '../../shared/interface/hero.interface';
 import { take, catchError, switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
@@ -23,7 +23,7 @@ export class HeroisListaComponent implements OnInit {
   @ViewChild('deleteModal', {static: true}) deleteModal: any;
 
   constructor(
-    private service: HeroisService,
+    private service: HeroService,
     private modalService: BsModalService,
     private alertService: AlertModalService,
     private router: Router,
