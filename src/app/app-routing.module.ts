@@ -3,11 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', pathMatch: 'full', redirectTo: 'herois'
+    path: '', pathMatch: 'full', redirectTo: 'upload'
   },
   {
     path: 'herois',
     loadChildren: './herois/herois.module#HeroisModule'
+  },
+  {
+    path: 'upload',
+    loadChildren: './upload-file/upload-file.module#UploadFileModule'
   }
 ];
 

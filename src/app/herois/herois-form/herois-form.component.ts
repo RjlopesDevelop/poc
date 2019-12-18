@@ -79,11 +79,11 @@ export class HeroisFormComponent implements OnInit {
 
     if (this.form.valid) {
 
-      let msgSuccess = 'Curso criado com sucesso!';
-      let msgError = 'Erro ao criar curso, tente novamente!';
+      let msgSuccess = 'Heroi criado com sucesso!';
+      let msgError = 'Erro ao criar heroi, tente novamente!';
       if (this.form.value.id) {
-        msgSuccess = 'Curso atualizado com sucesso!';
-        msgError = 'Erro ao atualizar curso, tente novamente!';
+        msgSuccess = 'Heroi atualizado com sucesso!';
+        msgError = 'Erro ao atualizar heroi, tente novamente!';
       }
 
       this.heroService.save(this.form.value).subscribe(
