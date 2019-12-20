@@ -7,7 +7,8 @@ const routes: Routes = [
   },
   {
     path: 'herois',
-    loadChildren: './herois/herois.module#HeroisModule'
+    // loadChildren: './herois/herois.module#HeroisModule'
+    loadChildren: () => import('./herois/herois.module').then(m => m.HeroisModule)
   },
   {
     path: 'upload',

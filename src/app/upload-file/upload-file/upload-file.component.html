@@ -4,3 +4,12 @@
         <label class="custom-file-label" for="customFile" id="customFileLabel">Escolher arquivo</label>
       </div>
 </div>
+<div style="margin-top: 10px;">
+  <p>
+    <label>Valor: </label>
+    <span>
+      {{ valor | currency:'R$ ' }}
+    </span>
+  </p>
+  <button type="button" class="btn btn-primary" (click)="onUpload()"[disabled]="!files">Upload</button>
+</div>
