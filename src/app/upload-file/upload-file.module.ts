@@ -5,7 +5,6 @@ import { UploadFileRoutingModule } from './upload-file-routing.module';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import {registerLocaleData} from '@angular/common';
 import pt from '@angular/common/locales/pt-PT';
-
 registerLocaleData(pt, 'pt-BR');
 
 
