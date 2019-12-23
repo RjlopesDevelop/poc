@@ -29,6 +29,11 @@
       "id": 6,
       "nome": "Doctor Estranho",
       "grupo": "Vingadores"
+    },
+    {
+      "id": 7,
+      "nome": "Thor",
+      "grupo": "Vingadores"
     }
   ]
 }
