@@ -24,10 +24,19 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     const fileNames = [];
     this.files = new Set();
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-      fileNames.push(selectedFiles[i].name);
-      this.files.add(selectedFiles[i]);
+    for (const key in selectedFiles) {
+    if (selectedFiles.hasOwnProperty(key)) {
+      const element = selectedFiles[key];
+      // console.log('name', element.name);
+      // console.log('element', element);
+      fileNames.push(element.name);
+      this.files.add(element);
     }
+  }
+    // for (let i = 0; i < selectedFiles.length; i++) {
+    //   fileNames.push(selectedFiles[i].name);
+    //   this.files.add(selectedFiles[i]);
+    // }
     document.getElementById('customFileLabel').innerHTML = fileNames.join(', ');
 
   }
