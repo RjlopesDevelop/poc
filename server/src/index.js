@@ -18,18 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const multipartMiddleware = multipart({ uploadDir: './uploads'});
 app.post('/upload',multipartMiddleware,(req,res) => {
     const files = req.files;
-    console.log('rodrigo ',files);
+   console.log('rodrigo ',files);
     res.json({ message: files })
 });
-// const multipartMiddleware = multipart({ uploadDir: './uploads' });
-// app.post('/upload', multipartMiddleware, (req, res) => {
-//   const files = req.files;
-//   console.log(files);
-//   res.json({ message: files });
-// });
+
 app.use((err, req, res, next) => res.json({error: err.message}));
 
 
-app.listen(8000, () => {
-    console.log('Servidor porta 8000');
+app.listen(6000, () => {
+    console.log('Servidor porta 6000');
 })
