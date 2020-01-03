@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    loadChildren: './upload-file/upload-file.module#UploadFileModule'
+   // loadChildren: './upload-file/upload-file.module#UploadFileModule'
+    loadChildren: () => import('./upload-file/upload-file.module').then(m => m.UploadFileModule)
   }
 ];
 

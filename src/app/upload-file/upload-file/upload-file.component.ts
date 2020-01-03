@@ -14,7 +14,7 @@ export class UploadFileComponent implements OnInit, OnDestroy {
 
   files: Set<File>;
   subscription: Subscription;
-  valor = '345';
+ // valor = '345';
   progress = 0;
   constructor(private service: UploadFileService) { }
 
