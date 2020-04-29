@@ -34,6 +34,11 @@
       "id": 7,
       "nome": "Thor",
       "grupo": "Vingadores"
+    },
+    {
+      "id": 8,
+      "nome": "Super Jojo",
+      "grupo": "ANIME"
     }
   ]
 }
